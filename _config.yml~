@@ -1,0 +1,8 @@
+name: Beautiful Coding
+description: Code beautiful shiny things on the web
+url: http://biojs.net
+markdown: kramdown
+highlighter: pygments 
+timezone: UTC
+encoding: utf-8
+baseurl: /

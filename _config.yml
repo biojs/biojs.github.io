@@ -1,0 +1,8 @@
+name: Beautiful Coding
+description: Code beautiful shiny things on the web
+url: http://localhost:4000
+markdown: kramdown
+highlighter: pygments 
+timezone: UTC
+encoding: utf-8
+baseurl: /
