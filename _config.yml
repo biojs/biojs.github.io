@@ -1,8 +1,0 @@
-name: Beautiful Coding
-description: Code beautiful shiny things on the web
-url: biojs.github.io
-markdown: kramdown
-highlighter: pygments 
-timezone: UTC
-encoding: utf-8
-baseurl: /
