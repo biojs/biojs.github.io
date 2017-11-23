@@ -4,7 +4,8 @@
     height: 50vh;
     background-image: url('../new_logo.svg');
     background-repeat: no-repeat;
-    background-size: 150% 150%;
+    background-size: 90vh 90vh;
+    background-position: right;
     padding-top: 10vh;
 }
 
