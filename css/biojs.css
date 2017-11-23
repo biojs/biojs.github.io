@@ -1,0 +1,40 @@
+.main-banner {
+    background-color: #22395C;
+    color: #ffffff;
+    height: 50vh;
+    background-image: url('../new_logo.svg');
+    background-repeat: no-repeat;
+    background-size: 150% 150%;
+    padding-top: 10vh;
+}
+
+.main-banner h1, .main-banner h2, .main-banner h3 {
+    vertical-align: middle;
+}
+
+.main-banner-buttons {
+    padding-top: 2em;
+}
+
+.top-bar, .top-bar ul {
+    background-color: #4F678D;
+    color: #ffffff;
+}
+.top-bar-logo {
+    width: 2em;
+    height: 2em;
+    margin-right: 1em;
+}
+
+.top-bar a {
+    color: #ffffff;
+}
+
+.top-bar-title {
+    font-weight: bold;
+    padding-left: 2em;
+}
+
+.main-content {
+    padding-top: 3em;
+}
