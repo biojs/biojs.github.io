@@ -1,76 +1,72 @@
-<!doctype html>
-<html class="no-js" lang="en">
+---
+layout: page
+title: BioJS Blog
+subtitle: Make your biological data shine
+use-site-title: true
+---
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BioJS</title>
-    <link rel="stylesheet" href="css/foundation.min.css" />
-    <link rel="stylesheet" href="css/biojs.css" />
-</head>
+<div class="posts-list">
+  {% for post in paginator.posts %}
+  <article class="post-preview">
+    <a href="{{ post.url | prepend: site.baseurl }}">
+	  <h2 class="post-title">{{ post.title }}</h2>
 
-<body>
-    <div class="top-bar">
-        <div class="top-bar-left">
-            <a href="/" class="top-bar-title">BioJS</a>
-        </div>
-        <div class="top-bar-right">
-            <ul class="menu">
-                <li>
-                    <a href="https://www.npmjs.com/search?q=biojs">BioJS NPM packages</a>
-                </li>
-                <li>
-                    <a href="https://groups.google.com/forum/#!forum/biojavascript">Contributor group</a>
-                </li>
-                <li>
-                    <a href="https://groups.google.com/forum/#!forum/biojs">Public group</a>
-                </li>
-                <li>
-                    <a href="https://gitter.im/biojs/biojs">Gitter</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="main-banner cell text-center">
-        <h1>BioJS</h1>
-        <h4>Make your biological data shine</h4>
-        <div class="main-banner-buttons">
-            <a href="http://biojs.io/" class="button">Explore components</a>
-        </div>
-    </div>
-    <div class="grid-container">
-        <div class="grid-x grid-margin-x main-content">
-            <div class="cell medium-4">
-                <h4>Modern data visualization</h4>
-                <p>
-                    BioJS is a library of over hundred JavaScript components enabling you to visualize and process data using current web technologies. Therefore BioJS makes it easy for you to integrate your visualizations into your own website or web application. The library
-                    offers a wide range of components for your use cases. And if you're not finding what you are looking for, you can still create your own BioJS component fully suited to your needs.
-                </p>
-            </div>
-            <div class="cell medium-4">
-                <h4>Easy setup with JavaScript</h4>
-                <p>BioJS enables you to integrate powerful visualization components into your website or web app and use them straight away. Our components from the <a href="http://biojs.io/">BioJS Registry</a> are pre-packed with all the tools and dependencies they need to make them
-                    work in your personal setup.</p>
-            </div>
-            <div class="cell medium-4">
-                <h4>A growing community</h4>
-                <p>
-                    BioJS unites users and developers from all around the globe to create outstanding biological data representations. The open-source character of the BioJS project makes it easy for anyone to follow and discussion current developments in the project, as
-                    well as to contribute and share their code with others. We are happy for you to get into contact with us either via the <a href="https://gitter.im/biojs/biojs">Gitter Chat</a>. And we are excited
-                    to see your ideas come to life. Becoming a BioJS developer is easy and straightforward. Just contribute your code to our component registry in a few steps.
-                </p>
-            </div>
-            <div class="cell medium-3"></div>
-        </div>
+	  {% if post.subtitle %}
+	  <h3 class="post-subtitle">
+	    {{ post.subtitle }}
+	  </h3>
+	  {% endif %}
+    </a>
+
+    <p class="post-meta">
+      Posted on {{ post.date | date: "%B %-d, %Y" }}
+    </p>
+
+    <div class="post-entry-container">
+      {% if post.image %}
+      <div class="post-image">
+        <a href="{{ post.url | prepend: site.baseurl }}">
+          <img src="{{ post.image }}">
+        </a>
+      </div>
+      {% endif %}
+      <div class="post-entry">
+        {{ post.excerpt | strip_html | xml_escape | truncatewords: site.excerpt_length }}
+        {% assign excerpt_word_count = post.excerpt | number_of_words %}
+        {% if post.content != post.excerpt or excerpt_word_count > site.excerpt_length %}
+          <a href="{{ post.url | prepend: site.baseurl }}" class="post-read-more">[Read&nbsp;More]</a>
+        {% endif %}
+      </div>
     </div>
 
-    <script src="lib/jquery.js"></script>
-    <script src="lib/what-input.js"></script>
-    <script src="lib/foundation.min.js"></script>
-    <script>
-        $(document).foundation();
-    </script>
-</body>
+    {% if post.tags.size > 0 %}
+    <div class="blog-tags">
+      Tags:
+      {% if site.link-tags %}
+      {% for tag in post.tags %}
+      <a href="{{ site.baseurl }}/tags#{{- tag -}}">{{- tag -}}</a>
+      {% endfor %}
+      {% else %}
+        {{ post.tags | join: ", " }}
+      {% endif %}
+    </div>
+    {% endif %}
 
-</html>
+   </article>
+  {% endfor %}
+</div>
+
+{% if paginator.total_pages > 1 %}
+<ul class="pager main-pager">
+  {% if paginator.previous_page %}
+  <li class="previous">
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+  </li>
+  {% endif %}
+  {% if paginator.next_page %}
+  <li class="next">
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+  </li>
+  {% endif %}
+</ul>
+{% endif %}
