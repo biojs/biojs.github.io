@@ -25,7 +25,7 @@ description: Make your biological data shine!
 navbar-links:
   About BioJS: "aboutme"
   Resources:
-    - BioJS Gitter: "https://gitter.com/biojs/biojs/"
+    - BioJS Gitter: "https://gitter.im/biojs/biojs/"
     - Website: "http://www.biojs.io/"
 
 # Image to show in the navigation bar - image must be a square (width = height)
