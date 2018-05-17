@@ -62,6 +62,10 @@ If you don't include YAML then your file will not use the template.
 
 Once you are done, feel free to send a pull request! As soon as it is merged, your post will be up on the blog. :)
 
+## For the contributors
+
+If you would like to update the "About Us" section, you can do the necessary changes in the [`aboutme.md`](./aboutme.md) file.
+
 ## Features(by the Developer)
 
 ### Mobile-first
