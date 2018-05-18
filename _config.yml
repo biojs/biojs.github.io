@@ -14,7 +14,7 @@ baseurl: ""
 # Of course don't forget to change the username and projectname to YOUR username and project
 
 # Name of website
-title: BioJS Blog
+title: BioJS 
 
 # Short description of your site
 description: Make your biological data shine!
@@ -71,9 +71,8 @@ author:
 social-network-links:
   rss: true
   email: "someone@example.com"
-  facebook: daattali
-  github: daattali
-  twitter: daattali
+  github: biojs
+  twitter: biojslibrary
 #  reddit: yourname
 #  google-plus: +DeanAttali
 #  linkedin: daattali
@@ -91,13 +90,10 @@ social-network-links:
 # Select which share links to show in posts
 share-links-active:
   twitter: true
-  facebook: true
-  google: false
-  linkedin: true
+  github: true
 
 # How to display the link to the website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "MyWebsite.com"  # eg. "deanattali.com/beautiful-jekyll"
 
 # --- Web Statistics Section --- #
 
@@ -134,7 +130,7 @@ title-separator: "-"
 # --- Don't need to touch anything below here (but you can if you want) --- #
 
 # Output options (more information on Jekyll's site)
-timezone: "America/Vancouver"
+timezone: "Europe/London"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
