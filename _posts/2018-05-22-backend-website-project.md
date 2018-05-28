@@ -36,3 +36,9 @@ Whichever reverse proxy is used, the static files(JS, CSS, Images etc.) will be 
 ### Server side caching of Data(If time permits!)
 
 A database such as **redis** or **memcache** will be used to cache requests server side. As data would be stored in RAM, it will be served immediately and the functioning of the website will be extremely quick. Another implementation can also be carried out using **pyramid-beaker** if the pyramid framework is used.
+
+## Using cron to keep the database updated
+
+This is probably the most important feature of the project. In order to ensure that the client get up-to-date information of the components, the database will be updated on a timely basis using a cron script. This will be making calls to the Github API as well as to NPM packages. First, it will go through NPM packages, searching for specific tags, such as **BioJS** and **bio-node** and create instances of new components everytime it encounters them. After this, it would search Github to update the corresponding information about it's repository, such as **number of forks**, **stars**, **contributors** etc.  
+
+Github only allows 60 unauthenticated requests per hour. To tackle this, the app has been registered on Github. This would enable the server to send **5000** requests to the Github API, using the generated client ID and client secret.
