@@ -1,6 +1,6 @@
 ---
 layout: post
-title: BioJS Website Backend Student Project 
+title: Week - 3 BioJS-Backend 
 subtitle: Track the progress here!
 tags: [biojs, backend, GSoC, "Summer of Code"]
 ---
@@ -138,31 +138,47 @@ def get_contributors_data(contributors_url):
     data = json.loads(response.read())
     return data
 
-
 class Command(BaseCommand):
     # during --help
     help = "Command to update the details of all the components from Github"
 
     def handle(self, *args, **options):
-        all_components = get_npm_data()['results']
+        all_components = get_npm_data()['objects']
         for component in all_components:
             component_data = component['package']
             try:
                 _component = Component.objects.get(name=component_data['name'])
+                print 'exists'
             except:
                 _component = Component.objects.create(name=component_data['name'])
-            _component.version = component_data['version']
-            _component.short_description = component_data['description']
-            tags = component_data['keywords']
+            print _component.name
+            try:
+                _component.version = component_data['version']
+            except:
+                pass
+            try:
+                _component.short_description = component_data['description']
+            except:
+                pass
+            try:
+                tags = component_data['keywords']
+            except:
+                tags = []
             for tag in tags:
                 try:
                     _tag = Tag.objects.get(name=tag)
-                    if not _tag in _component.tags:
-                        _component.tags.add(_tag)
                 except:
                     _tag = Tag.objects.create(name=tag)
                     _component.tags.add(_tag)
-            ### Add date after parsing
+                if not _tag in _component.tags.all():
+                    _component.tags.add(_tag)
+            try:
+                str_date = component_data['date']
+                req_date = datetime.strptime(str_date, "%Y-%m-%dT%H:%M:%S.%fZ") #This object is timezone unaware
+                aware_date = pytz.utc.localize(req_date)    #This object is now timezone aware
+                _component.modified_time = aware_date
+            except:
+                pass
             try:
                 _component.npm_url = component_data['links']['npm']
             except:
@@ -188,6 +204,7 @@ class Command(BaseCommand):
             _component.save()
 
             if _component.github_url:
+                print _component.github_url
                 github_data = get_github_data(_component.github_url)
                 _component.stars = github_data['stargazers_count']
                 _component.forks = github_data['forks']
@@ -199,7 +216,8 @@ class Command(BaseCommand):
                 except:
                     pass
                 _component.save()
-                contributors_data = get_contributors_data(github_data['contributors_url'])
+                print str(github_data['contributors_url']) + '?client_id=' + GITHUB_CLIENT_ID + '&client_secret=' + GITHUB_CLIENT_SECRET
+                contributors_data = get_contributors_data(str(github_data['contributors_url']) + '?client_id=' + GITHUB_CLIENT_ID + '&client_secret=' + GITHUB_CLIENT_SECRET)
                 commits = 0
                 count = 0
                 for contributor in contributors_data:
@@ -219,8 +237,8 @@ class Command(BaseCommand):
                 _component.no_of_contributors = count
                 _component.save()
 
-
 ```
+5. **Created URL for updating the database in an emergency**: This extremely important idea was given by Rowland during the second week's call. This focussed at the creation of a URL, which requires superuser rights, calling which would immediately update the database, gathering information from NPM as well as Github.
 
 ## On-going tasks and tasks to be completed during Week 3:
 
