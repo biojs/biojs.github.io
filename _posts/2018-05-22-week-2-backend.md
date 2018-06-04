@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Week - 3 BioJS-Backend 
+title: Week - 2 BioJS-Backend 
 subtitle: Track the progress here!
 tags: [biojs, backend, GSoC, "Summer of Code"]
 ---
