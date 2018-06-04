@@ -13,7 +13,7 @@ Week 2 consisted of adding the initial API calls and writing a prototype version
 
 ## Tasks completed in week 3
   1. Index API calls written and integrated.
-  2. Management command completely tested. Code is updated on [last week's blog post]("http://biojs.net/2018-05-22-backend-website-project/").
+  2. Management command completely tested. Code is updated on [last week's blog post](http://biojs.net/2018-05-22-backend-website-project/).
   3. TravisCI set up: It was my first time using TravisCI, and it is indeed marvellous! Below is the current yml script. It will be updated as soon as tests are added.
 
   ```yaml
@@ -87,7 +87,7 @@ Week 2 consisted of adding the initial API calls and writing a prototype version
   ```
   5. A major decision taken at the end of this week was to time the cron job to run every 15 minutes. This was keeping in mind the approximate increase in the number of Components in the future and the number of Github API calls required to fetch data.
 
-## Minutes of the meeting (weekly call on Sunday, taken from this week's [frontend blog]("http://biojs.net/2018-06-04-week-3-frontend/")):
+## Minutes of the meeting (weekly call on Sunday, taken from this week's [frontend blog](http://biojs.net/2018-06-04-week-3-frontend/)):
   1. Students need to start through Gitter daily to update everyone in the BioJS community on the progress apart from the weekly blog posts.
   2. The master doc turned out to be really useful! Django admin panel and its credentials have been added to it which contain the details of the API. [View the master doc](https://docs.google.com/document/d/1ZzbpAqzta22S-kgKOGWeEsr9zFBAhzQlV0nb6-bmgYU/edit).
   3. Megh and Sarthak would be reviewing each other's work through Pull Request reviews. Also, both should have a high level  idea about each other's projects. Hence, the idea and basics of both the projects would be explained through slides or another form of presentation in near future.
