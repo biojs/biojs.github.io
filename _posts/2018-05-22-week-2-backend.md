@@ -214,7 +214,10 @@ class Command(BaseCommand):
 
             if _component.github_url:
                 print _component.github_url
-                github_data = get_github_data(_component.github_url)
+                try:
+                    github_data = get_github_data(_component.github_url)
+                except:
+                    continue
                 _component.stars = github_data['stargazers_count']
                 _component.forks = github_data['forks']
                 _component.watchers = github_data['watchers']
@@ -233,7 +236,10 @@ class Command(BaseCommand):
                     pass
                 _component.save()
                 print str(github_data['contributors_url']) + '?client_id=' + GITHUB_CLIENT_ID + '&client_secret=' + GITHUB_CLIENT_SECRET
-                contributors_data = get_contributors_data(str(github_data['contributors_url']) + '?client_id=' + GITHUB_CLIENT_ID + '&client_secret=' + GITHUB_CLIENT_SECRET)
+                try:
+                    contributors_data = get_contributors_data(str(github_data['contributors_url']) + '?client_id=' + GITHUB_CLIENT_ID + '&client_secret=' + GITHUB_CLIENT_SECRET)
+                except:
+                    continue
                 commits = 0
                 count = 0
                 for contributor in contributors_data:
@@ -249,7 +255,10 @@ class Command(BaseCommand):
                         _contribution = Contribution.objects.create(component=_component, contributor=_contributor, contributions=contributor["contributions"])
                     commits += _contribution.contributions
                     count +=1
-                _component.downloads = get_downloads(str(github_data['downloads_url']) + '?client_id=' + GITHUB_CLIENT_ID + '&client_secret=' + GITHUB_CLIENT_SECRET)
+                try:
+                    _component.downloads = get_downloads(str(github_data['downloads_url']) + '?client_id=' + GITHUB_CLIENT_ID + '&client_secret=' + GITHUB_CLIENT_SECRET)
+                except:
+                    pass
                 _component.commits = commits
                 _component.no_of_contributors = count
                 _component.save()
