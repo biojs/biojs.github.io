@@ -118,25 +118,34 @@ This feature has been thoroughly exploited, and will be used for the timely upda
 
 ```python
 
-from django.core.management import BaseCommand
-import urllib, json
-from main.models import *
-from biojs.config import *
-
 def get_github_data(github_url):
-    response = urllib.urlopen(github_url)       # 'https://api.github.com/users/whatever?client_id=xxxx&client_secret=yyyy' format
-    data = json.loads(response.read())
+    response = urllib.urlopen(github_url)
+    data = json.load(response)
     return data
 
 def get_npm_data():
-    response = urllib.urlopen("https://api.npms.io/v2/search?q=keywords:biojs")
-    data = json.loads(response.read())
+    # response = urllib2.urlopen()
+    hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11'}
+    req = urllib2.Request("http://registry.npmjs.com/-/v1/search?text=keywords:biojs,bionode&size=500", headers=hdr)
+    response = urllib2.urlopen(req)
+    data = json.load(response)
     return data
 
 def get_contributors_data(contributors_url):
     response = urllib.urlopen(contributors_url)
-    data = json.loads(response.read())
+    data = json.load(response)
     return data
+
+def get_downloads(downloads_url):
+    import ast
+    print downloads_url
+    response = urllib.urlopen(downloads_url)
+    downloads = 0
+    data = ast.literal_eval(response.read())
+    for download in data:
+        downloads += int(download['download_count'])
+    return downloads
+
 
 class Command(BaseCommand):
     # during --help
@@ -215,6 +224,13 @@ class Command(BaseCommand):
                     _component.license = github_data['license']['name']
                 except:
                     pass
+                try:
+                    str_date = github_data['created_at']
+                    req_date = datetime.strptime(str_date, "%Y-%m-%dT%H:%M:%SZ") #This object is timezone unaware
+                    aware_date = pytz.utc.localize(req_date)    #This object is now timezone aware
+                    _component.created_time = aware_date
+                except:
+                    pass
                 _component.save()
                 print str(github_data['contributors_url']) + '?client_id=' + GITHUB_CLIENT_ID + '&client_secret=' + GITHUB_CLIENT_SECRET
                 contributors_data = get_contributors_data(str(github_data['contributors_url']) + '?client_id=' + GITHUB_CLIENT_ID + '&client_secret=' + GITHUB_CLIENT_SECRET)
@@ -233,11 +249,19 @@ class Command(BaseCommand):
                         _contribution = Contribution.objects.create(component=_component, contributor=_contributor, contributions=contributor["contributions"])
                     commits += _contribution.contributions
                     count +=1
+                _component.downloads = get_downloads(str(github_data['downloads_url']) + '?client_id=' + GITHUB_CLIENT_ID + '&client_secret=' + GITHUB_CLIENT_SECRET)
                 _component.commits = commits
                 _component.no_of_contributors = count
                 _component.save()
 
 ```
+
+This command is run using
+
+```bash
+$ python manage.py updatecomponents
+```
+
 5. **Created URL for updating the database in an emergency**: This extremely important idea was given by Rowland during the second week's call. This focussed at the creation of a URL, which requires superuser rights, calling which would immediately update the database, gathering information from NPM as well as Github.
 
 ## On-going tasks and tasks to be completed during Week 3:
