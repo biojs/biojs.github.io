@@ -11,7 +11,7 @@ Week 2 consisted of adding great details and new components to the website using
 ## This week's progress
 A dynamic component page was made in week 3 and it was integrated with the backend. Karma was setup for unit tests and unit tests were initialised. Travis was configured to test the components. Dynamic routing for each component was also added and the component page was initialised.
 
-## Tasks completed in week 2
+## Tasks completed in week 3
   1. Components’ page created and integrated with backend. Visit.
   2. Karma has been set up and unit tests for the “Heading” and the “ComponentTable” components have been written.
   3. Dynamic routing for each component has been set up.
