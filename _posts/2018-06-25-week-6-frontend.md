@@ -25,9 +25,9 @@ The discussion can be seen here in the [gitter channel](https://gitter.im/biojs/
 
 ## Minutes of the meeting (weekly call on Sunday):
   1. Have to flag the components which are not showing up in current biojs.io and make sure to check them properly in the new version.
-  2. End-to-end testing in frontend will tentatively be done using NightWatch. Browserstack.com, as pointed out by Dennis and   3. Rowland, is another great platform to test cross-browser support.
-  4. Visualizations will most probably be complete by the end of next week as the workflow is now clear. Thus, a MVP for BioJS will be ready!
-  5. As pointed out by Dennis, "[Premature] Optimisation is the root of all evil". Thus, we will be doing further optimizations once tests have been written and a complete MVP is ready.
+  2. End-to-end testing in frontend will tentatively be done using NightWatch. Browserstack.com, as pointed out by Dennis and Rowland, is another great platform to test cross-browser support.
+  3. Visualizations will most probably be complete by the end of next week as the workflow is now clear. Thus, a MVP for BioJS will be ready!
+  4. As pointed out by Dennis, "[Premature] Optimisation is the root of all evil". Thus, we will be doing further optimizations once tests have been written and a complete MVP is ready.
 
 ## Goals for week 7
   1. Work on the visualizations
