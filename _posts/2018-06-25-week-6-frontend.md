@@ -19,9 +19,9 @@ The discussion can be seen here in the [gitter channel](https://gitter.im/biojs/
 
 ## Workflow for visualizations
 ### Visualizations
-![Visualizations workflow](https://github.com/biojs/biojs.github.io/blob/frontend-week-6/_posts/Visualization%20workflow.jpg)
+![Visualizations workflow](https://github.com/biojs/biojs.github.io/blob/master/_posts/Visualization%20workflow.jpg)
 ### Render visualizations
-![Visualizations workflow](https://github.com/biojs/biojs.github.io/blob/frontend-week-6/_posts/Render%20visualization%20workflow.jpg)
+![Visualizations workflow](https://github.com/biojs/biojs.github.io/blob/master/_posts/Render%20visualization%20workflow.jpg)
 
 ## Minutes of the meeting (weekly call on Sunday):
   1. Have to flag the components which are not showing up in current biojs.io and make sure to check them properly in the new version.
