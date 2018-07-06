@@ -24,8 +24,12 @@ After a lot of thought, Sarthak and I proposed a new model. The visualization wo
   3. Since wzrd is behind slowing down the visualizations and not our server or the code, it will be best to cache the response received from wzrd for all components and perform a cron-job to check for a change in version of all components. If version is changed, call wzrd again for a new bundled JS. This will make the process a lot faster!
 
 ## Goals for week 8
+### Backend
   1. Decide upon a way to substitute wzrd.
   2. Start working on ansible scripts.
+### Frontend
+  1. Document visualizations
+  2. Update documentation
 
 ## Website
 The latest version of the website can be found [here](http://139.59.93.32/biojs-frontend/dist/#/).
