@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Week - 7 BioJS - Backend   
+title: Week 7  - BioJS   
 subtitle: Almost done with the visualizations!
 tags: [biojs, backend, GSoC, "Summer of Code"]
 ---
