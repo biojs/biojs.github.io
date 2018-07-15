@@ -25,6 +25,7 @@ description: Make your biological data shine!
 navbar-links:
   About BioJS: "aboutme"
   Resources:
+    - BioJS Registry Prototype: "http://139.59.93.32/biojs-frontend/dist/#/"
     - BioJS Gitter: "https://gitter.im/biojs/biojs/"
     - Website: "http://biojs.io/"
 
