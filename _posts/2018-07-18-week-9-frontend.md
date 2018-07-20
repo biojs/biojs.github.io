@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Week 9ˇ - BioJS 
-subtitle: Track week eight's progress here: Frontend and Backend!
-tags: [biojs, frontend, GSoC, "Summer of Code"]
+title: Week 9 - BioJS - Frontend  
+subtitle: Learning the amazing - Ansible!
+tags: [biojs, backend, GSoC, "Summer of Code"]
 ---
 
 ## Recap
