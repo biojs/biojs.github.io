@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Week - 10 BioJS - Backend   
-subtitle: Ansible is fun!
+title: Week - 11 BioJS - Backend   
+subtitle: Bundling it up!
 tags: [biojs, backend, GSoC, "Summer of Code"]
 ---
 
@@ -21,7 +21,7 @@ As week 10 started, Sarthak and I were pretty sure that we would be able to wrap
   3. Dennis will be testing the ansible stack on as many servers as possible, and the rectification of the errors encountered is the main priority for the time being.
   4. Dennis will be coming up with a list, enlisting the minimum necessities to create the MVP before GSoC time period ends.
 
-## Goals for week 11
+## Goals for week 10
   1. Test the ansible playbook across as many servers as possible.
   2. Try to implement a play for setting up [Let's Encrypt's SSL certificate](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04) in an automated manner.
   3. Research on how SSL would be handled on multiple servers and if it is possible, its feasibility.
