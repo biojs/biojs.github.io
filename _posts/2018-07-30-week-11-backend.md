@@ -11,7 +11,7 @@ Week 10 observed substantial progress with the ansible playbook and hence, it wa
 ## This week's progress
 With the completion of week 10, I was pretty much done with the backend part of the ansible playbook. Week 11 required testing it along with Dennis and working on the automated deployment of the front-end.
 
-## Discussion and tasks: week 10
+## Discussion and tasks: week 11
   1. Collaborate with Dennis to test the deployment of the new website across servers using the created ansible playbook.
   2. Complete ansible plays to integrate the deployment of the front-end as well.
 
