@@ -20,7 +20,7 @@ BioJS registry is a platform used by bioinformaticians and researchers all over 
 
 ## Summary
 ### Project Goals
-- The primary goal of the project was to either re-engineer or optimize the current engineering of the [biojs.io](biojs.io) registry, while prioritizing the improvement in the loading time of the same.
+- The primary goal of the project was to either re-engineer or optimize the current engineering of the [https://biojs.io](biojs.io) registry, while prioritizing the improvement in the loading time of the same.
 - In order to improve the user experience as well as the user interface, the registry website was designed from scratch, and APIs for the same had to be written and integrated.
 - Write tests to ensure proficient working of the new components, especially the visualizations.
 - Write an Ansible playbook to facilitate quick and automated deployment of the website in the future.
@@ -29,7 +29,7 @@ BioJS registry is a platform used by bioinformaticians and researchers all over 
 - A new workflow was created for the new website, along with a re-engineered mechanism that would enable quicker display of visualizations, an important part of the original repository.
 - A new backend based on the proposed model as well as necessary changes made in accordance with the community decisions was made and the same was inegrated in unison with the frontend project.
 - The django-ansible stack was created in the required time, and the same was tested across Ubuntu images pertaining to different versions.
-- After intense discussions, a cron job was implemented to update the database timely from the [npm registry](http://npmjs.com/) as well as [Github](api.github.com). The data requested via the API calls was returned after efficient querying from the database, rather than natively through Github and/or NPM registry. This increased the speed drastically.
+- After intense discussions, a cron job was implemented to update the database timely from the [npm registry](http://npmjs.com/) as well as [Github](https://api.github.com). The data requested via the API calls was returned after efficient querying from the database, rather than natively through Github and/or NPM registry. This increased the speed drastically.
 - The data now loads at least 4 times faster than that in the previous website.
 
 ### A peak of the [new website](http://43.240.98.213/)
