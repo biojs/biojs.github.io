@@ -20,7 +20,7 @@ BioJS registry is a platform used by bioinformaticians and researchers all over 
 
 ## Summary
 ### Project Goals
-- The primary goal of the project was to either re-engineer or optimize the current engineering of the [https://biojs.io](biojs.io) registry, while prioritizing the improvement in the loading time of the same.
+- The primary goal of the project was to either re-engineer or optimize the current engineering of the [biojs.io](https://biojs.io) registry, while prioritizing the improvement in the loading time of the same.
 - In order to improve the user experience as well as the user interface, the registry website was designed from scratch, and APIs for the same had to be written and integrated.
 - Write tests to ensure proficient working of the new components, especially the visualizations.
 - Write an Ansible playbook to facilitate quick and automated deployment of the website in the future.
