@@ -14,7 +14,7 @@ We'll also be migrating our domains slightly to reduce maintenance burden. Pleas
 ## Here's what will change:
 
 - [biojs.net](http://www.biojs.net) and [biojs.io](http://www.biojs.io) will both point to the new registry. There will no longer be a homepage separate to the registry.
-- The BioJS blog will live at [blog.biojs.net](http://www.biojs.net). This is [hosted on GitHub](https://github.com/biojs/biojs.github.io) using GitHub pages, which should allow anyone to make PRs to add blog posts if they wish (Do you use or create BioJS components? We'd love to host a guest post of yours!)
+- The BioJS blog will live at [blog.biojs.net](http://blog.biojs.net). This is [hosted on GitHub](https://github.com/biojs/biojs.github.io) using GitHub pages, which should allow anyone to make PRs to add blog posts if they wish (Do you use or create BioJS components? We'd love to host a guest post of yours!)
 
 ## Special thank-yous to the people who made this happen!
 
