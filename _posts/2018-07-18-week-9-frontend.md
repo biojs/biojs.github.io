@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Week 9 - BioJS - Frontend  
+title: Week 9 - BioJS - Frontend
 subtitle: Learning the amazing - Ansible!
 tags: [biojs, backend, GSoC, "Summer of Code"]
 ---

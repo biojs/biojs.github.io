@@ -1,7 +1,7 @@
 ---
 layout: post
 title: BioJS has a completely new look!
-tags: [biojs]
+tags: [biojs, announcements]
 date: 2018-09-16
 ---
 
