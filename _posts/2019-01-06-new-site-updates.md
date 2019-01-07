@@ -8,13 +8,13 @@ date: 2019-01-06
 # The BioJS registry website has received some small updates
 
 We made some improvements to the registry website.
-List of changes at the [bottom of this post](#letting-the-cat-out–of-the-bag).
+List of changes at the bottom of this post.
 
 ## What happened since GSoC
 
 Since the end of the BioJS [Google Summer of Code](https://summerofcode.withgoogle.com/) project [Megh](https://github.com/Megh-Thakkar) and [Sarthak](https://github.com/sarthak-sehgal) have been busy with exams and studying but the new website has continued to receive some love and updates.
 
-[Yo][https://github.com/yochannah] and [myself](https://github.com/DennisSchwartz) had the opportunity to attend the [Biohackathon 2018](http://bh2018paris.info) in Paris to work on BioJS. The result were a number of changes and smaller improvements to the website and the underlying infrastructure and some good ideas for improving the interoparability of components and ensure we are using future-proof technlogy. We also spent considerable time on trying to get back the example visualisations that the old website rendered.
+[Yo](https://github.com/yochannah) and [myself](https://github.com/DennisSchwartz) had the opportunity to attend the [Biohackathon 2018](http://bh2018paris.info) in Paris to work on BioJS. The result were a number of changes and smaller improvements to the website and the underlying infrastructure and some good ideas for improving the interoparability of components and ensure we are using future-proof technlogy. We also spent considerable time on trying to get back the example visualisations that the old website rendered.
 
 ## Invisible work
 
