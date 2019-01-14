@@ -2,6 +2,7 @@
 layout: post
 title: Setting up continuous deployment using Ansible, Docker & TravisCI
 tags: [biojs, technical]
+author: dennis
 ---
 
 # Setting up continuous deployment using Ansible, Docker & TravisCI
@@ -11,7 +12,7 @@ tags: [biojs, technical]
 Continuous deployment refers to the frequent automated deployment of code changes to server infrastructure without much manual interaction of the developer. It helps to provide a continuous stream of changes to a web application as they are developed and to prevent the accumulation of undeployed changes. This enables a tighter feeback loop for developers with the users of the application and prevents big chunks of changes being shipped at once which also has big potential for bugs.
 Continuous deployment is often used in conjunction with a multi environment infrastructure where there are development, staging and production environments. This allows changes to be live on a copy of the production system without affecting the live system itself. When the changes have been tested on the dev or staging system, the tested version is deployed to the production environment.
 
-Historically, the [BioJS Project](https://biojs.net) has not had any automated deployment set up. In some cases sites were hosted on [Github pages]() as [Jekyll]() blogs which were automatically updated. However, this didn't allow for any development site and changes could only be tested locally before going live. The backend of the registry was originally hosted as a [Heroku](http://heroku.com) app which had to be updated manually as well.
+Historically, the [BioJS Project](https://biojs.net) has not had any automated deployment set up. In some cases sites were hosted on [Github pages](https://pages.github.com/) as [Jekyll](https://jekyllrb.com/) blogs which were automatically updated. However, this didn't allow for any development site and changes could only be tested locally before going live. The backend of the registry was originally hosted as a [Heroku](http://heroku.com) app which had to be updated manually as well.
 
 In this article I will describe how I was able to set up a continuous deployment system on our existing servers using [Ansible](https://www.ansible.com) scripts, [Docker](https://www.docker.com/) and [TravisCI](https://travis-ci.org). It automatically deploys changes to the BioJS[frontend](https://github.com/biojs/biojs-frontend), [backend](https://github.com/biojs/biojs-backend/) and [ansible scripts](https://github.com/biojs/biojs-backend-ansible) repositories `master` and `production` branches to [dev.biojs.net](http://dev.biojs.net) and [biojs.net](http://biojs.net) respectively.
 
@@ -46,7 +47,7 @@ We already had a second server available, so what was mostly needed was to recon
 
 ## Updating Ansible scripts
 
-The bigger task was to update the ansible code to be able to deploy the BioJS registry to both the dev and production environment without having to change all the parameters in code. The first step was to pull apart the directory structure and ensure that all the tasks that are required for both environment are in one 'common' ansible role. I created separate `group_vars` files that contain the variable settings for dev and production. Ansible has the ability to retrieve information from environment variables like so `"{{ lookup('env', 'DB_PASSWORD') }}"`.
+The bigger task was to update the ansible code to be able to deploy the BioJS registry to both the dev and production environment without having to change all the parameters in code. The first step was to pull apart the directory structure and ensure that all the tasks that are required for both environment are in one 'common' ansible role. I created separate `group_vars` files that contain the variable settings for dev and production. Ansible has the ability to retrieve information from environment variables like so `{% raw %}"{{ lookup('env', 'DB_PASSWORD') }}"{% endraw %}`.
 
 I also created separate hosts files that specify the machines for the different environments as well as separate playbooks for dev and production.
 
@@ -64,7 +65,7 @@ This was solved using TravisCI's `encrypt-file` utility that allows files to be 
 
 ## Setting up automated deployments
 
-From the GSoC project we already had TravisCI set up on the main repos of the registry, namely the [biojs-frontend]() and [biojs-backend](), where we would run unit tests and require them to pass before merging code into the `master` branch. The unit tests themselves are a bit lacking and could really use some contributions if you are feeling generous ;). But at least the infrastructure is set up.
+From the GSoC project we already had TravisCI set up on the main repos of the registry, namely the [biojs-frontend](https://github.com/biojs/biojs-frontend) and [biojs-backend](https://github.com/biojs/biojs-backend/), where we would run unit tests and require them to pass before merging code into the `master` branch. The unit tests themselves are a bit lacking and could really use some contributions if you are feeling generous ;). But at least the infrastructure is set up.
 
 On the back of this it seemed sensible to add automated deployments on top of this existing CI infrastructure. Ideally we would like the latest changes - the current `master` branch - to be deployed to the dev platform and then manually choose the time to move the current state to be the new live system.
 
@@ -75,7 +76,7 @@ To enable automated deployments I moved the configuration to use Travis' staged 
 The big issue I encountered here is that ansible is a Python command line utility that needs to be installed and run from the CI script. However, some of our code is in Node.js (name the front-end and the component builder). And the way that Travis works is that you choose a language and it will create runtime environment for the CI run that has the everything you need installed.
 But if the languase is Node.js, Python is not installed in that environment. So in order to run ansible after the completion of our tests, we would need to install python and ansible plus all its dependencies as part of the CI run. With the CI environment taking about a minute to boot and the installation of dependencies taking another few minutes, this was an extremely time consuming and painful development process. And with different python versions and dependency issues I finally gave up and looked for a better solution.
 
-Alas, [Docker](https://www.docker.com/) to the rescue! I found a nice docker image ([philm/ansible_playbook]()) that has ansible installed and ready to run. Docker is a service that Travis supports, so all that was needed was a quick addition to the yaml file:
+Alas, [Docker](https://www.docker.com/) to the rescue! I found a nice docker image ([philm/ansible_playbook](https://github.com/philm/ansible_playbook)) that has ansible installed and ready to run. Docker is a service that Travis supports, so all that was needed was a quick addition to the yaml file:
 
 ```yaml
 services:
@@ -86,7 +87,7 @@ With that it was possible to just run `docker pull philm/ansible_playbook` in th
 
 Finally, the TravisCI YAML files also contain the environment variables such as the database and github credentials in an encrypted form. For the SSH keys, I created a new separate key set for both dev and production and manually added them to the `authorised_keys` file of the respective servers. The private keys of these sets are encrypted using the `encrypt-file` functionality of the TravisCI CLI and added as `deployment-key.enc` files to the Github repos of the deployed modules. This file will be decrypted during the CI run and used to identify with the target server.
 
-This system was set up for the [biojs-frontend](), [biojs-backend]() and [biojs-backend-ansible]() repos and with [biojs-component-builder]() coming soon.
+This system was set up for the [biojs-frontend](https://github.com/biojs/biojs-frontend), [biojs-backend](https://github.com/biojs/biojs-backend/) and [biojs-backend-ansible](https://github.com/biojs/biojs-backend-ansible) repos and with [biojs-component-builder](https://github.com/biojs/biojs-component-builder) coming soon.
 
 Here is the TravisCI configuration of the frontend repo for example:
 
@@ -149,7 +150,7 @@ env:
 
 ## SSL certificates
 
-The last step for this system concerned the SSL certificates to enable and enforce HTTPS connections to both [dev.biojs.net](http://dev.biojs.net) and [biojs.net](http://biojs.net). The SSL certificates on the live system were initially set up manually with [letsencrypt]() and [certbot](). However, they weren't part of the ansible scripts and therefore not automatically provisioned when setting up a new server.
+The last step for this system concerned the SSL certificates to enable and enforce HTTPS connections to both [dev.biojs.net](http://dev.biojs.net) and [biojs.net](http://biojs.net). The SSL certificates on the live system were initially set up manually with [letsencrypt](https://letsencrypt.org/) and [certbot](https://certbot.eff.org). However, they weren't part of the ansible scripts and therefore not automatically provisioned when setting up a new server.
 
 After some fiddling with nginx configurations, both the production and dev environments are now enforcing HTTPS and are automaticall renewing SSL certificates.
 
@@ -160,4 +161,4 @@ I'd like to thank [Megh](https://github.com/Megh-Thakkar) for setting up the ini
 There is some more work to be done in the future, such as adding the component-builder to the deployments and possibly restructuring the ansible scripts to be more modular and coherent in their grouping.
 Currently everything is deployed on every push all of the three repos. It would make sense to only deploy the modules that actually have code changes. This could easily be done using Ansible's `--tags` feature, to limit the deployment to the frontend for example.
 
-As always, we would appreciate any contribution. Please contact us on [Gitter]() or [Github]() if you would like to contribute to BioJS.
+As always, we would appreciate any contribution. Please contact us on [Gitter](https://gitter.im/biojs) or [Github](https://github.com/biojs/organisation/issues) if you would like to contribute to BioJS.

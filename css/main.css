@@ -772,3 +772,7 @@ td.gutter {
   font-style: italic;
   font-size: 16px;
 }
+
+.author {
+  margin-bottom: 20px;
+}
