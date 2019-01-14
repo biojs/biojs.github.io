@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Setting up continuous deployment using Ansible, Docker & TravisCI
+title: Setting up continuous deployment using Ansible, Docker and TravisCI
 tags: [biojs, technical]
 author: dennis
 ---
