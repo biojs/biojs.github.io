@@ -3,6 +3,7 @@ layout: post
 title: The BioJS registry has received some updates!
 tags: [biojs, announcements]
 date: 2019-01-06
+author: dennis
 ---
 
 # The BioJS registry website has received some small updates
