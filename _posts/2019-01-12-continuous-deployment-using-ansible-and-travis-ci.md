@@ -14,7 +14,7 @@ Continuous deployment is often used in conjunction with a multi environment infr
 
 Historically, the [BioJS Project](https://biojs.net) has not had any automated deployment set up. In some cases sites were hosted on [Github pages](https://pages.github.com/) as [Jekyll](https://jekyllrb.com/) blogs which were automatically updated. However, this didn't allow for any development site and changes could only be tested locally before going live. The backend of the registry was originally hosted as a [Heroku](http://heroku.com) app which had to be updated manually as well.
 
-In this article I will describe how I was able to set up a continuous deployment system on our existing servers using [Ansible](https://www.ansible.com) scripts, [Docker](https://www.docker.com/) and [TravisCI](https://travis-ci.org). It automatically deploys changes to the BioJS[frontend](https://github.com/biojs/biojs-frontend), [backend](https://github.com/biojs/biojs-backend/) and [ansible scripts](https://github.com/biojs/biojs-backend-ansible) repositories `master` and `production` branches to [dev.biojs.net](http://dev.biojs.net) and [biojs.net](http://biojs.net) respectively.
+In this article I will describe how I was able to set up a continuous deployment system on our existing servers using [Ansible](https://www.ansible.com) scripts, [Docker](https://www.docker.com/) and [TravisCI](https://travis-ci.org). It automatically deploys changes to the BioJS [frontend](https://github.com/biojs/biojs-frontend), [backend](https://github.com/biojs/biojs-backend/) and [ansible scripts](https://github.com/biojs/biojs-backend-ansible) repositories `master` and `production` branches to [dev.biojs.net](http://dev.biojs.net) and [biojs.net](http://biojs.net) respectively.
 
 ## Initial state of affairs
 
@@ -74,7 +74,7 @@ This required a number of updates to the Travis configuration. Travis is control
 To enable automated deployments I moved the configuration to use Travis' staged builds. There is the test stage that is run on every new push to every branch and the deployment stages that are only run on new commits/pushes to the `master` and `production` branches.
 
 The big issue I encountered here is that ansible is a Python command line utility that needs to be installed and run from the CI script. However, some of our code is in Node.js (name the front-end and the component builder). And the way that Travis works is that you choose a language and it will create runtime environment for the CI run that has the everything you need installed.
-But if the languase is Node.js, Python is not installed in that environment. So in order to run ansible after the completion of our tests, we would need to install python and ansible plus all its dependencies as part of the CI run. With the CI environment taking about a minute to boot and the installation of dependencies taking another few minutes, this was an extremely time consuming and painful development process. And with different python versions and dependency issues I finally gave up and looked for a better solution.
+But if the language is Node.js, Python is not installed in that environment. So in order to run ansible after the completion of our tests, we would need to install python and ansible plus all its dependencies as part of the CI run. With the CI environment taking about a minute to boot and the installation of dependencies taking another few minutes, this was an extremely time consuming and painful development process. And with different python versions and dependency issues I finally gave up and looked for a better solution.
 
 Alas, [Docker](https://www.docker.com/) to the rescue! I found a nice docker image ([philm/ansible_playbook](https://github.com/philm/ansible_playbook)) that has ansible installed and ready to run. Docker is a service that Travis supports, so all that was needed was a quick addition to the yaml file:
 
@@ -152,7 +152,7 @@ env:
 
 The last step for this system concerned the SSL certificates to enable and enforce HTTPS connections to both [dev.biojs.net](http://dev.biojs.net) and [biojs.net](http://biojs.net). The SSL certificates on the live system were initially set up manually with [letsencrypt](https://letsencrypt.org/) and [certbot](https://certbot.eff.org). However, they weren't part of the ansible scripts and therefore not automatically provisioned when setting up a new server.
 
-After some fiddling with nginx configurations, both the production and dev environments are now enforcing HTTPS and are automaticall renewing SSL certificates.
+After some fiddling with nginx configurations, both the production and dev environments are now enforcing HTTPS and are automatically renewing SSL certificates.
 
 ## Conclusion
 
