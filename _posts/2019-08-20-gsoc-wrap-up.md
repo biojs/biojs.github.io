@@ -46,7 +46,7 @@ This project involved improving the Yeoman generator by adding new features and 
   
 ### Coding Period Experience
 
-The experience was amaing. I had a great time working on my project and I learned a lot. My mentors were so amazing and helpful, we talked daily, whenever I got stuck somewhere they helped me get out of it.
+The experience was amazing. I had a great time working on my project and I learned a lot. My mentors were so amazing and helpful, we talked daily, whenever I got stuck somewhere they helped me get out of it.
 
 We had weekly video calls and I also wrote blogs every week summarizing my work, the tasks done, the problems I faced and the minutes of our weekly video calls. Read the blogs [here](https://blog.biojs.net).
 
