@@ -9,8 +9,8 @@ tags: [biojs, Yeoman-generator, generator-biojs-webcomponents , GSoC, "Summer of
 #### Name: Interactive Web Component Generator
 #### Organisation: Open Bioinformatics Foundation
 #### Mentors: Yo Yehudi, Sarthak Sehgal
-#### Project Proposal: https://docs.google.com/document/d/1QQ9s9HF56RcbDKrfFx8t9UiJuKz8iSeLN-GMfv1nQiw/edit?usp=sharing
-#### GitHub repository: https://github.com/biojs/generator-biojs-webcomponents
+#### Check out the project proposal and GitHub repository of the project -
+[Project Proposal](https://docs.google.com/document/d/1QQ9s9HF56RcbDKrfFx8t9UiJuKz8iSeLN-GMfv1nQiw/edit?usp=sharing) | [GitHub Repository](https://github.com/biojs/generator-biojs-webcomponents)
 
 ## Overview
 BioJS is a library of over one hundred JavaScript components enabling users to visualise and process data using current web technologies. BioJS makes it easy for users to integrate their visualisations into their own website or web application.
